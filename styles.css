@@ -1,0 +1,75 @@
+:root{
+  --bg:#0b1220;
+  --card:#121a2b;
+  --muted:#9fb0d3;
+  --text:#e7eefc;
+  --accent:#5cc8ff;
+  --accent-2:#79f2c0;
+  --badge:#1f2a44;
+  --border:#21314f;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,Segoe UI,Roboto,Arial}
+header{
+  padding:20px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border)
+}
+h1{margin:0;font-size:20px;letter-spacing:.3px}
+main{max-width:1100px;margin:24px auto;padding:0 16px}
+footer{max-width:1100px;margin:32px auto 24px;padding:0 16px;color:var(--muted)}
+
+.grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:16px;
+}
+@media (max-width: 900px){
+  .grid{grid-template-columns:1fr}
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);
+}
+
+.row{display:flex;gap:8px;align-items:center}
+.row input{
+  flex:1;background:#0c1526;color:var(--text);border:1px solid var(--border);
+  border-radius:10px;padding:10px 12px;outline:none;
+}
+.row button{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:#001a25;border:none;border-radius:10px;padding:10px 14px;font-weight:600;cursor:pointer
+}
+.row button:hover{filter:brightness(1.05)}
+
+.status{display:flex;gap:8px;flex-wrap:wrap}
+.badge{
+  background:var(--badge);
+  border:1px solid var(--border);
+  color:var(--muted);
+  padding:6px 10px;border-radius:999px;font-size:12px
+}
+
+.stats{display:flex;gap:16px;flex-wrap:wrap}
+.stat{
+  flex:1;min-width:160px;background:#0e1730;border:1px dashed var(--border);border-radius:14px;padding:12px
+}
+.stat .label{color:var(--muted);font-size:12px}
+.stat .value{font-size:28px;font-weight:700;margin-top:4px}
+
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{border-bottom:1px solid var(--border);padding:10px 8px;vertical-align:top}
+.table tbody tr:hover{background:#0e1730}
+
+pre{
+  background:#0e1730;border:1px solid var(--border);
+  padding:12px;border-radius:12px;overflow:auto
+}
+.muted{color:var(--muted);font-size:12px;margin-top:8px}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}

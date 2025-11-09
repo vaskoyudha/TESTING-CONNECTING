@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ESP32 Kursi Pintar — Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Firebase (compat untuk mempermudah contoh) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <!-- Chart.js untuk grafik -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>ESP32 Kursi Pintar</h1>
+    <div class="status">
+      <span id="wifiStatus" class="badge">WiFi: —</span>
+      <span id="authStatus" class="badge">Auth: —</span>
+      <span id="deviceStatus" class="badge">Device: —</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Pengaturan Perangkat</h2>
+      <div class="row">
+        <label for="deviceId">Device ID (chipID):</label>
+        <input id="deviceId" placeholder="Otomatis terdeteksi…" />
+        <button id="saveDeviceBtn">Gunakan Device ID</button>
+      </div>
+      <p class="hint">
+        Jika kosong, aplikasi akan mencoba mendeteksi <code>/devices/</code> pertama yang ada di Realtime Database.
+      </p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Live Data</h2>
+        <div class="stats">
+          <div class="stat">
+            <div class="label">FSR</div>
+            <div class="value" id="fsrVal">—</div>
+          </div>
+          <div class="stat">
+            <div class="label">Punggung (cm)</div>
+            <div class="value" id="punggungVal">—</div>
+          </div>
+          <div class="stat">
+            <div class="label">Leher (cm)</div>
+            <div class="value" id="leherVal">—</div>
+          </div>
+        </div>
+        <div class="muted" id="lastUpdate">Last update: —</div>
+      </div>
+
+      <div class="card">
+        <h2>Grafik</h2>
+        <canvas id="liveChart" height="160"></canvas>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Serial (last)</h2>
+      <pre id="serialLast">—</pre>
+    </section>
+
+    <section class="card">
+      <h2>Serial Logs (terbaru)</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Waktu (ms sejak boot)</th>
+            <th>Baris</th>
+          </tr>
+        </thead>
+        <tbody id="serialLogsBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <small>© 2025 Kursi Pintar — Firebase Realtime Database</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
